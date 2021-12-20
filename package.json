@@ -1,7 +1,7 @@
 {
-  "name": "ionic-backend",
+  "name": "Miheev Misha",
   "version": "1.0.0",
-  "description": "",
+  "description": "+ installed node   + https://nodejs.org/en/download/",
   "main": "app.js",
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -19,10 +19,18 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "nodemon index.js",
+    "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "keywords": [],
   "author": "alexander-vorotov",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mimiheev/AVTO2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mimiheev/AVTO2/issues"
+  },
+  "homepage": "https://github.com/Mimiheev/AVTO2#readme"
 }
