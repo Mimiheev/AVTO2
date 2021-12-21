@@ -4,10 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const router = require('./routes/CarRouter');
 
-//Initiate our app
 const app = express();
-//config file upload
-// app.use(cors());
+
 app.use(cors());
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,11 +14,10 @@ app.use(function (req, res, next) {
 });
 // mongoo connect
 const options = {
-  autoIndex: false, // Don't build indexes
-  reconnectTries: 30, // Retry up to 30 times
-  reconnectInterval: 500, // Reconnect every 500ms
-  poolSize: 10, // Maintain up to 10 socket connections
-  // If not connected, return errors immediately rather than waiting for reconnect
+  autoIndex: false,
+  reconnectTries: 30,
+  reconnectInterval: 500,
+  poolSize: 10,
   bufferMaxEntries: 0
 }
 
