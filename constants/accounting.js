@@ -18,10 +18,12 @@ const sale = {
 
 module.exports = {
     tariffRental,
-    sale
+    sale,
 }
 
-// const date1 = new Date(dateStart);
-// const date2 = new Date(dateEnd);
-// const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-// const periodDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+// const periodRentDays = () => {
+//     const date1 = new Date(dateStart);
+//     const date2 = new Date(dateEnd);
+//     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+//     const periodDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+//}
