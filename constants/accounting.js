@@ -1,5 +1,3 @@
-const { dateStart, dateEnd } = require('../models/CarRent')
-
 const tariffRental = {
     FIRST: 270,
     SECOND: 330,
@@ -12,18 +10,7 @@ const sale = {
     15: [15, 30]
 }
 
-// const dateStartDay = new Date(dateStart).getDay()
-
-// const periodDays = dateEnd.split(' ')[2] - dateStart.split(' ')[2];
-
 module.exports = {
     tariffRental,
     sale,
 }
-
-// const periodRentDays = () => {
-//     const date1 = new Date(dateStart);
-//     const date2 = new Date(dateEnd);
-//     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-//     const periodDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-//}

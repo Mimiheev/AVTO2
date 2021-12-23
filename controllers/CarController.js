@@ -1,5 +1,6 @@
 const CarRent = require('../models/CarRent')
 const {tariffRental, sale} = require('../constants/accounting')
+const {Logger} = require("mongodb/lib/core");
 
 
 class CarController {
@@ -25,43 +26,35 @@ class CarController {
             const price = periodDays * dayPrice * (100 - saleValue) / 100
             return res.status(200).json(price)
         } catch (e) {
-            console.log(e)
             res.status(500).json({message:'invalid request'})
         }
     }
 
     static postCreateRent = async (req, res) => {
         try {
-            const {modelAuto, stateNumber, VIN, dateStart, dateEnd, tariff} = req.body;
-            const dateStartDay = new Date(dateStart).getDay()
+            const {modelAuto, stateNumber, VIN, rent} = req.body;
+            const dateStartDay = new Date(rent[0].dateStart).getDay()
             if ( dateStartDay === 6 || dateStartDay === 0) {
                 return res.status(400).json({mg: 'Невозможно арендовать автомобиль в выходные дни'})
             }
-            const date1 = new Date(dateStart);
-            const date2 = new Date(dateEnd);
+            const date1 = new Date(rent[0].dateStart);
+            const date2 = new Date(rent[0].dateEnd);
             const timeDiff = Math.abs(date2.getTime() - date1.getTime());
             const periodDay = Math.ceil(timeDiff / (1000 * 3600 * 24));
             if (periodDay >= 31) {
                 return res.status(400).json({mg: 'Максимальный срок аренды автомобиля 30 дней'})
             }
-            const lastRental = await CarRent.findOne({
-                dateEnd
-            })
-            const breakBetweenRentals = lastRental.setDate(lastRental.getDate() + 3)
-            if(breakBetweenRentals >= dateStart) {
+            const lastRental = await CarRent.findOne({VIN: req.body.VIN}, () => {})
+            const dateLastRental = lastRental.rent[lastRental.rent.length - 1].dateEnd
+            const breakBetweenRentals = new Date(dateLastRental.setDate(dateLastRental.getDate() + 3))
+            if(breakBetweenRentals >= rent[0].dateStart) {
                 return res.status(400).json({mg: 'Минимальный промежуток времени после последней аренды - 3 дня'})
             }
             let carObject = new CarRent({
                 stateNumber,
                 modelAuto,
                 VIN,
-                rent: [
-                    {
-                        dateStart,
-                        dateEnd,
-                        tariff,
-                    }
-                ]
+                rent,
             })
             try {
                 await  carObject.save()
@@ -69,10 +62,8 @@ class CarController {
                     cleaner: carObject
                 })
             } catch (e) {
-                console.log(e)
                 res.status(500).json({message: 'LOL'})
             }
-            return res.status(200).json({modelAuto, stateNumber, VIN, dateStart, dateEnd, tariff})
         } catch (e) {
             res.status(500).json({mg: 'invalid request'})
         }
