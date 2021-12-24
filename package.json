@@ -1,0 +1,36 @@
+{
+  "name": "Miheev Misha",
+  "version": "1.0.0",
+  "description": "+ installed node   + https://nodejs.org/en/download/",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "jsonwebtoken": "8.5.1",
+    "mongodb": "3.5.6",
+    "mongoose": "5.9.10",
+    "passport": "0.4.1",
+    "passport-local": "1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "alexander-vorotov",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mimiheev/AVTO2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mimiheev/AVTO2/issues"
+  },
+  "homepage": "https://github.com/Mimiheev/AVTO2#readme"
+}
