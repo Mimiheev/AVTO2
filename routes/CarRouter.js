@@ -5,7 +5,7 @@ const carController = require('../controllers/CarController')
 router.get('/calculating-cost-of-car/:dateStart/:dateEnd/:tariff', carController.getCalculatingCostOfCar)
 router.post('/carRent', carController.postCreateRent)
 router.get('/loadingAllCars', carController.getLoadingAllCars)
-router.get('/loadingOneCars/:vin', carController.getLoadingOneCars)
+router.get('/loadingOneCars/:VIN', carController.getLoadingOneCars)
 router.post('/addCar', carController.addCar)
 
 module.exports = router
